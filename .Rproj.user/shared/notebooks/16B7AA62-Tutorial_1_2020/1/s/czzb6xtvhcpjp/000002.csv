@@ -1,0 +1,7 @@
+"0","afectados %>%"
+"0","  filter(Anio == 2010 & Muestra == ""Comunal"") %>%   # Año 2010 y solo comunas"
+"0","  group_by(Estado) %>%                       # Agrupamos por ""muerto"", ""leve"", etc"
+"0","  summarise(total = sum(Cantidad)) %>%              # Creamos una nueva columna a partir de cada grupo, llamada ""total"""
+"0","  arrange(-total)                                   # Ordenamos descendentemente por ""total"""
+"2","`summarise()` ungrouping output (override with `.groups` argument)
+"

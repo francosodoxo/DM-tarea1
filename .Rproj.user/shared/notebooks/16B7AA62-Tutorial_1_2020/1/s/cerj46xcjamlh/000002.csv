@@ -1,0 +1,4 @@
+"0","# Seleccionar una columna del dataframe"
+"0","afectados %>%"
+"0","  select(Cantidad) %>%"
+"0","  head()"

@@ -1,0 +1,1 @@
+"0","aggregate(Cantidad ~ Estado + Anio, afectados, FUN=sum)"

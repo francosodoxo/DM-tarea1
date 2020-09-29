@@ -1,0 +1,2 @@
+"0","# Full outer join"
+"0","merge(a, b, by = ""ClienteID"", all = T)"

@@ -1,0 +1,5 @@
+"0","afect2010 <- with(afectados,"
+"0","                  afectados[Muestra == ""Regional"" &"
+"0","                              Anio == 2010 &"
+"0","                              Estado == ""Muertos"", ])"
+"0","hist(afect2010$Cantidad)"

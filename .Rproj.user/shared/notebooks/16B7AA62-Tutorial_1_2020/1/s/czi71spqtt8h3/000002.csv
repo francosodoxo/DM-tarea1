@@ -1,0 +1,3 @@
+"0","sp <- afectados %>%"
+"0","  spread(key = Estado, value = Cantidad)"
+"0","head(sp)"

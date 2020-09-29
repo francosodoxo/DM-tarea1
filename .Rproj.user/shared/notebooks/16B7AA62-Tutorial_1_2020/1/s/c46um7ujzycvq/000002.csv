@@ -1,0 +1,1 @@
+"0","with(afectados, afectados[Anio == 2010 & Descripcion == ""TEMUCO"", ])"

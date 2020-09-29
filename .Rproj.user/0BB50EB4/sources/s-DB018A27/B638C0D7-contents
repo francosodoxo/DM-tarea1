@@ -1,0 +1,236 @@
+---
+title: "Tarea 1: Exploración y Visualización de Datos"
+author: "Felipe Bravo, Hernán Sarmiento, Aymé Arango, Alison Fernandez, Cinthia Mabel Sanchez, Juan Pablo Silva"
+date: "Septiembre 2020"
+output:
+  html_document:
+    number_sections: yes
+    theme: spacelab
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+# Declaración de compromiso ético
+Nosotros **AGREGUEN SUS NOMBRES**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
+
+# Instrucciones
+
+1. Trabajen en equipos de dos o tres personas. Salvo excepciones, no se corregirá entregas con menos de dos integrantes.
+
+2. Modifique este archivo `.Rmd` agregando sus respuestas donde corresponda.
+
+3. Para cada pregunta, cuando corresponda, **incluya el código fuente que utilizó para llegar a su respuesta**.
+
+4. El formato de entrega para esta actividad es un archivo html. **Genere un archivo HTML usando RStudio** y súbalo a U-Cursos.
+   Basta con que uno de los integrantes haga la entrega. Si ambos hacen una entrega en U-Cursos, se revisará cualquiera de éstas.
+
+# Tarea 
+La primera parte de esta actividad son preguntas teóricas que avanzaron en las clases del curso de Minería de datos.
+
+## Teoría
+
+*1. ¿Cuál es el objetivo de Minería de datos y qué la diferencia de Machine Learning? De un ejemplo.*
+
+**Respuesta:**
+
+
+*2. Describa y compare los siguientes métodos usados en Minería de datos: clasificación vs. clustering.*
+
+**Respuesta:**
+
+
+*3. ¿Qué desafios existen en Minería de datos?*
+
+**Respuesta:**
+
+
+*4. Respecto a los tipos de atributo, ¿cuál es la diferencia entre razón e intervalo?*
+
+**Respuesta:**
+
+
+*5. ¿Qué factores que ocasionan errores en el análisis de datos deben ser considerados para la limpieza de un set de datos?*
+
+**Respuesta:**
+
+
+*6. ¿Qué es el análisis exploratorio de datos o EDA?*
+
+**Respuesta:**
+
+
+*7. Describa las medidas de tendencia central: media y mediana. Exponga la diferencia entre ambas.*
+
+**Respuesta:**
+
+
+*8. ¿Qué es una matriz de correlación y para qué sirve?*
+
+**Respuesta:**
+
+
+*9. Explique cómo se construye un Boxplot y exponga cómo se identifican los valores atípicos u outliers en este tipo de gráfico.*
+
+**Respuesta:**
+
+
+## Práctica 
+
+En esta parte de la actividad se trabajará con los datos del Proceso Constituyente 2016-2017 publicados en el Portal de Datos Abiertos del Gobierno de Chile, para mayor información pueden ingresar al siguiente link: https://datos.gob.cl/dataset/proceso-constituyente-abierto-a-la-ciudadania. Los datos corresponden a las actas de los Encuentros Locales Autoconvocados (ELAs), en cada cual, un grupo de personas se reune a discutir distintos conceptos como por ejemplo: salud, educación, seguridad, etc.
+
+Los datos con los que trabajarán consisten en la cantidad de veces que cada concepto constitucional fue mencionado por cada localidad de Chile. 
+
+Para cargar los datos, use:
+
+```{r}
+data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt", header = T)
+```
+
+**Por cada pregunta adjunte el código R que utilizó para llegar a la respuesta. Respuestas sin código no recibirán puntaje**
+
+### Exploración básica
+
+1. ¿Cuáles son las dimensiones del dataset (filas, columnas)? Adjunte código o indique cómo determinó la cantidad de datos total. 
+
+```{r}
+# RESPUESTA
+```
+
+2. ¿Qué describe cada línea del dataset? (ejemplifique tomando la fila 85)
+
+```{r}
+# RESPUESTA
+```
+
+3. ¿Existen localidades repetidas en el dataset? Adjunte el código o indique cómo llegó a esa conclusión. 
+
+```{r}
+# RESPUESTA
+```
+
+4. Liste los nombres de las columnas del dataset `data_tf`. Adjunte código en R y *recuerde* usar `head` si el resultado es muy largo.
+
+```{r}
+# RESPUESTA
+```
+
+
+### Análisis
+
+1. Liste todas las localidades donde *no* se discutió el concepto `a_la_salud`. 
+
+```{r}
+# RESPUESTA
+```
+
+2. Liste las 10 localidades que más mencionaron el concepto `justicia`. 
+
+```{r}
+# RESPUESTA
+```
+
+
+3. Liste los 10 conceptos menos mencionados a lo largo de todo el proceso.
+
+
+```{r}
+# RESPUESTA
+```
+
+
+4. Liste las 10 localidades que más participaron en el proceso. Describa cómo definió su medida de participación.
+
+
+```{r}
+# RESPUESTA
+```
+
+5. Ejecute el siguiente código que permitirá agregar una nueva columna a nuestro dataframe que solo tendrá el nombre de la región.
+
+```{r, message = F, warning=F}
+library(dplyr)
+regiones <- strsplit(as.character(data_tf[,1]), '/')
+data_tf$region <- sapply(regiones, "[[", 1)
+data_tf <- data_tf %>% select(localidad, region, everything())
+```
+
+Luego, genere un gráfico de barras (ggplot) que muestre los 10 conceptos más mencionados en cada una de las regiones mencionadas (adjunte gráficos y código):
+
+- `Atacama`
+- `Coquimbo`
+- `Metropolitana de Santiago`
+
+
+Cabe resaltar, que se esperan tres gráficos de barras para las tres diferentes regiones:
+
+```{r}
+# 10 conceptos más mencionados en Atacama
+```
+
+```{r}
+# 10 conceptos más mencionados en Coquimbo
+```
+
+```{r}
+# 10 conceptos más mencionados en Metropolitana de Santiago
+```
+
+6. De la pregunta anterior, ¿considera que es razonable usar el conteo de frecuencias para determinar las regiones que tuvieron mayor participación en el proceso? ¿Por qué? Sugiera y solamente comente una forma distinta de hacerlo.
+
+```{r}
+# RESPUESTA
+```
+
+## Ejercicios
+
+### Accidentes de tránsito
+
+Para esta sección utilizaremos un dataset real de número de accidentes de tránsito por localidad, el cual puede ser encontrado en el siguiente link: http://datos.gob.cl/dataset/9348. Para cargar el dataset ejecute el siguiente código:
+
+```{r}
+tipos <- read.table("https://users.dcc.uchile.cl/~hsarmien/mineria/datasets/accidentes_2010_2011.txt")
+head(tipos)
+```
+
+Explore el set de datos para responder las siguientes preguntas:
+
+1. Filtre los datos para incluir sólo los accidentes ocurridos el año 2011 a nivel regional. Genere un boxplot donde se indique la cantidad de accidentes categorizado por tipo de accidente.
+
+Este tipo de gráfico nos ayudará a entender como se distribuye los datos por cada tipo de accidentes. Es decir, podremos apreciar que tan dispersos o similares son los datos en todo el dataset. También, puede ser útil para observar valores atípicos u outliers en los datos.
+
+```{r}
+# RESPUESTA
+```
+
+2. ¿Qué aprecia con el gráfico anterior? ¿Qué otra forma de explorar los datos podría agregar? ¿Qué información adicional aporta? Adjunte una breve explicación.
+
+**Respuesta:**
+
+### Diamantes
+
+Considere el set de datos diamonds del paquete ggplot2 de R, que contiene los precios en dolares, junto con otros atributos importantes: quilates, corte, color y claridad. También hay medidas físicas como ser: x (largo), y (ancho), z (profundidad), depth (porcentaje total de profundidad) y table (ancho desde el tope del diamante al punto relativo más ancho del diamante):
+
+```{r}
+library(ggplot2)
+data("diamonds")
+head(diamonds)
+```
+
+Realice una exploración por el set de datos para responder las siguientes preguntas:
+
+1. Teniendo en cuenta las medidas físicas, ¿considera que existen valores inexistentes o inconsistentes? Describa como manejaría esta situación. Adjunte el código necesario.
+
+```{r}
+# RESPUESTA
+```
+
+2. Considerando la relación entre dos atributos, ¿qué atributos están más correlacionadas con el precio (price) y qué significa esto? ¿cuál es la correlación más alta para table? Adjunte el código necesario para la respuesta.
+
+```{r}
+# RESPUESTA
+```
+
+3. Proponga otra forma para explorar los datos. ¿Qué información adicional aporta? Adjunte una breve explicación.
+
+**Respuesta:**

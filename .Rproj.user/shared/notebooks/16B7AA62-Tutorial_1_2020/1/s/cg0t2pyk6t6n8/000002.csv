@@ -1,0 +1,4 @@
+"0","# Definimos una tabla con dos columnas, `x` e `y`, cuyos valores son como sigue"
+"0","d <- data.frame(x = c(10, 20, 30), y = c(""a"", ""b"", ""c""))"
+"0","# Muestra todo el data frame, note como se crean los encabezados."
+"0","d"

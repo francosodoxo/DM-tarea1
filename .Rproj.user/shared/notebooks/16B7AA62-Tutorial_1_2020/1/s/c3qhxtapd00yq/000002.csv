@@ -1,0 +1,2 @@
+"0","# Filtra los datos cuyo año es 2010 y muestra todas las columnas (notar que ahora no muestra TRUE/FALSE)"
+"0","head(afectados[afectados$Anio == 2010, ]) "

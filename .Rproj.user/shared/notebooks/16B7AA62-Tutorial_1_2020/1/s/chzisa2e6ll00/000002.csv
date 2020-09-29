@@ -1,0 +1,2 @@
+"0","docs <- VectorSource(msj[, 2])"
+"0","docs <- VCorpus(docs)"

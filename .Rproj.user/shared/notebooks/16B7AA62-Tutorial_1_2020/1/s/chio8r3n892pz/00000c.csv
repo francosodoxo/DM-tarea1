@@ -1,0 +1,18 @@
+"0","# Informacion del dataframe"
+"0","glimpse(afectados)"
+"1","Rows: 2,864"
+"1",""
+"1","
+"
+"1","Columns: 5"
+"1",""
+"1","
+"
+"1","$ Muestra     [3m[38;5;246m<chr>[39m[23m ""Nacional"", ""Nacional"", ""Regional"", ""Regional"", ""C...
+$ Descripcion [3m[38;5;246m<chr>[39m[23m ""Nacional"", ""Nacional"", ""XV RegiÃ³n Arica y Parina...
+$ Anio        [3m[38;5;246m<int>[39m[23m 2010, 2011, 2010, 2011, 2010, 2011, 2010, 2011, 20...
+$ Estado      [3m[38;5;246m<chr>[39m[23m ""Muertos"", ""Muertos"", ""Muertos"", ""Muertos"", ""Muert...
+$ Cantidad    [3m[38;5;246m<int>[39m[23m 1595, 1573, 28, 33, 24, 29, 2, 2, 2, 2, 0, 0, 32, ..."
+"1",""
+"1","
+"

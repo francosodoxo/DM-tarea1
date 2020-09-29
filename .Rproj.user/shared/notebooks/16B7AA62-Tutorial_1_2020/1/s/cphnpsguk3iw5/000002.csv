@@ -1,0 +1,3 @@
+"0","# De la fila 2, muestra todas las columnas"
+"0","# el resultado es un data frame"
+"0","afectados[2, ] "

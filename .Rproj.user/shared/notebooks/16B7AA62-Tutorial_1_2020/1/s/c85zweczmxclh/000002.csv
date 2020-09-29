@@ -1,0 +1,2 @@
+"0","# Filtramos que la columna Anio sea 2010 y además que la columna Muestra sea Comunal. Seleccionamos la Descripcion y la Cantidad"
+"0","head(afectados[afectados$Anio == 2010 & afectados$Muestra == ""Comunal"", c(""Descripcion"", ""Cantidad"")])"

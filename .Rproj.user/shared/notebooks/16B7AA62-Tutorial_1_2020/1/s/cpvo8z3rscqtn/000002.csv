@@ -1,0 +1,2 @@
+"0","# se puede seleccionar más de una columna"
+"0","head(afectados[c(1, 5)])"

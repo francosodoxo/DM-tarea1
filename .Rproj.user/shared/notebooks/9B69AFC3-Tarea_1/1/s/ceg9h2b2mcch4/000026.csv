@@ -1,0 +1,3 @@
+"0",""
+"0","#dataa <- data_tf[data_tf$region == 'Atacama'][order(data$)]"
+"0","#ggplot2::ggplot()"

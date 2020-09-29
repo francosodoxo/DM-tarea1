@@ -1,0 +1,2 @@
+"0","# Otra forma de ordenar descendente"
+"0","afectados_reducido[order(-afectados_reducido$Cantidad), ]"
