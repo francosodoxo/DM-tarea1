@@ -149,14 +149,9 @@ colSums(data_tf[,2:113])[order(colSums(data_tf[,-1]), decreasing = FALSE)][1:10]
 
 ```{r}
 # Se suman todas las filas y las 10 localidades que tienen mayor valor se muestran.
-
-sumData = data.frame(localidad=c(),total=c())
-for (i in 1:nrow(data_tf)) {
-  append(sumData$localidad, data_tf[i,1],after = length(sumData$localidad))
-  append(sumData$total, sum(data_tf[i,3:113]), after = length(sumData$total))
-}
-typeof(sumData$total)
-sumData[order(sumData$total, decreasing= TRUE)]
+newData <- apply(data_tf[,3:113],1,sum)
+dataf <- data.frame(localidad = data_tf$localidad, total = newData)
+dataf[order(dataf$total, decreasing = TRUE),1][1:10]
 ```
 
 5. Ejecute el siguiente código que permitirá agregar una nueva columna a nuestro dataframe que solo tendrá el nombre de la región.
@@ -179,22 +174,43 @@ Cabe resaltar, que se esperan tres gráficos de barras para las tres diferentes 
 
 ```{r}
 # 10 conceptos más mencionados en Atacama
-library(ggplot2)
-ggplot2::ggplot()
+
+pplot <- function(region){
+  library(ggplot2)
+  cols <- colnames(data_tf)[3:113]
+  numeros <- apply(data_tf[data_tf$region==region,3:113],2,sum)
+  
+  newDf <- data.frame(conceptos = cols, frec = numeros)
+  newDf<- newDf[order(newDf$frec, decreasing = TRUE),][1:10,]
+  ggplot(newDf)+
+    geom_bar(aes(x = conceptos, y= frec),stat="identity")+
+    ggtitle(paste("Conceptos más mencionados en",region,sep=' '))+
+    coord_flip()+
+    xlab('Conceptos')+
+    ylab('Frecuencia')
+}
+
+pplot('Atacama')
+
+#dataa <- data_tf[data_tf$region == 'Atacama'][order(data$)]
+#ggplot2::ggplot()
 ```
 
 ```{r}
 # 10 conceptos más mencionados en Coquimbo
+pplot('Coquimbo')
 ```
 
 ```{r}
 # 10 conceptos más mencionados en Metropolitana de Santiago
+pplot('Metropolitana de Santiago')
 ```
 
 6. De la pregunta anterior, ¿considera que es razonable usar el conteo de frecuencias para determinar las regiones que tuvieron mayor participación en el proceso? ¿Por qué? Sugiera y solamente comente una forma distinta de hacerlo.
 
 ```{r}
 # RESPUESTA
+print("No es una buena sugerencia, porque no se sabe qué tan profundas fueron las discusiones que se dieron en cada localidad, entonces una medida a considerar sería haber agregado el tiempo que se demoraron en discutir cada punto y medir en cuál localidad se dieron discusiones más largas.")
 ```
 
 ## Ejercicios
