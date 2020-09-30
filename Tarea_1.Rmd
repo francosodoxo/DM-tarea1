@@ -254,14 +254,73 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 
 ```{r}
 # RESPUESTA
+# Para ver datos inexistentes, se usa lo siguente
+sapply(diamonds, function(x) sum(is.na(x)))
 ```
 
+```{r}
+#para graficar se usa el código a continuación
+datad <- data.frame(cut = diamonds$cut, depth = diamonds$depth)
+ggplot(datad,aes(x= cut, y=depth))+geom_boxplot()
+```
+No hay valores inexistentes como se muestra en la figura anterior, pero hay varios outliers, que se calculan a continuación, obteniendo la cantidad de datos que están fuera del intervalo [1er cuartil, 3er cuartil] de los datos.
+```{r}
+outliers <- function(x,inf,sup){
+  addition <- 0
+  for (var in x){
+    if (var < inf || var > sup){
+      addition <- addition + 1
+    } 
+  }
+  return(addition)
+}
+```
+Se calculan el porcentaje de outliers que tiene una característica de la siguiente forma:
+```{r}
+summary(diamonds[diamonds$cut=='Fair',])
+fair_frame <- diamonds[diamonds$cut == "Fair",]
+print("El porcentaje de outliers de la característica depth del grupo 'Fair' es:")
+print((outliers(fair_frame$depth,64.4,65.9)/length(fair_frame$depth))*100)
+```
 2. Considerando la relación entre dos atributos, ¿qué atributos están más correlacionadas con el precio (price) y qué significa esto? ¿cuál es la correlación más alta para table? Adjunte el código necesario para la respuesta.
 
 ```{r}
 # RESPUESTA
+print("depth vs price")
+cor(fair_frame$depth, fair_frame$price)
+
+print("table vs price")
+cor(fair_frame$table, fair_frame$price)
+
+print("x vs price")
+cor(fair_frame$x, fair_frame$price)
+
+print("y vs price")
+cor(fair_frame$y, fair_frame$price)
+
+print("z vs price")
+cor(fair_frame$z, fair_frame$price)
 ```
+El tamaño del diamante (x,y,z) está fuertemente relacionado con el precio de este.
+
+La correlación más alta para table está dada por:
+```{r}
+data_good <- diamonds[diamonds$cut == 'Good',] 
+data_very_good <- diamonds[diamonds$cut == 'Very Good',]
+data_premium <- diamonds[diamonds$cut == 'Premium', ]
+data_ideal<- diamonds[diamonds$cut=='Ideal',]
+summary(data_good$table)
+c1 <- cor(fair_frame$table, fair_frame$price)
+c2 <- cor(data_good$table, data_good$price)
+c3 <- cor(data_very_good$table, data_very_good$price)
+c4 <- cor(data_premium$table, data_premium$price)
+c5 <- cor(data_ideal$table, data_ideal$price)
+datos <- c(c1,c2,c3,c4,c5)
+print(abs(datos))
+```
+El cut good está más correlacionado con el precio en la variable table.
 
 3. Proponga otra forma para explorar los datos. ¿Qué información adicional aporta? Adjunte una breve explicación.
 
 **Respuesta:**
+Una forma puede ser cómo se relacionan las variables del tamaño del diamante con su depth y table, graficando y ver alguna relación visual si es que existe. Otra forma es el diagrama de rostros que permite graficar datos multidimensionales en una sola imagen.
