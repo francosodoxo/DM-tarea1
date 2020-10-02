@@ -84,7 +84,7 @@ Los datos con los que trabajarán consisten en la cantidad de veces que cada con
 Para cargar los datos, use:
 
 ```{r}
-data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt", header = T)
+data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt", header = T, fileEncoding = "UTF-8")
 ```
 
 **Por cada pregunta adjunte el código R que utilizó para llegar a la respuesta. Respuestas sin código no recibirán puntaje**
@@ -95,39 +95,48 @@ data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt",
 
 ```{r}
 # RESPUESTA
+dim(data_tf)
 ```
-
+R: Las dimensiones del dataset son 328 filas y 114 columnas.
 2. ¿Qué describe cada línea del dataset? (ejemplifique tomando la fila 85)
 
 ```{r}
 # RESPUESTA
+str(data_tf[85,])
 ```
+R: Cada línea del dataset está compuesto por 113 columnas donde la primera corresponde a la localidad (tipo factor) y las siguientes 112 corresponden al número de veces que se mencionó el concepto de la etiqueta de la columna respectiva. Tomando como ejemplo la fila 85, se nos muestra aque en la localidad de Aysen la "igualdad ante la ley" se mencionó 3 veces.
 
 3. ¿Existen localidades repetidas en el dataset? Adjunte el código o indique cómo llegó a esa conclusión. 
 
 ```{r}
 # RESPUESTA
+unique(data_tf$localidad)
 ```
+La función unique entrega 328 valores diferentes que coinciden con la cantidad de filas del dataset concluyendo que no existen datos duplicados. Sin enbargo la función unique opera bajo el supuesto de que los datos se encuentran bien ingresados, errores en tildes o codificación que pudiesen significar duplicación no están siendo analizados.
 
 4. Liste los nombres de las columnas del dataset `data_tf`. Adjunte código en R y *recuerde* usar `head` si el resultado es muy largo.
 
 ```{r}
 # RESPUESTA
+# Las primeras 20 columnas 
+names(data_tf)[1:20]
 ```
 
 
 ### Análisis
 
-1. Liste todas las localidades donde *no* se discutió el concepto `a_la_salud`. 
+1. Liste todas las localidades donde *no* se discu]1:15tió el concepto `a_la_salud`. 
 
 ```{r}
 # RESPUESTA
+data_tf[data_tf$a_la_salud!=0,]
 ```
 
 2. Liste las 10 localidades que más mencionaron el concepto `justicia`. 
 
 ```{r}
 # RESPUESTA
+data_tf[order(-data_tf$justicia),][1:10,c(1,71)]
 ```
 
 
@@ -136,6 +145,8 @@ data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt",
 
 ```{r}
 # RESPUESTA
+res[]<-colSums(data_tf[,-1])
+res[order(-res)][1:10]
 ```
 
 
@@ -166,6 +177,7 @@ Cabe resaltar, que se esperan tres gráficos de barras para las tres diferentes 
 
 ```{r}
 # 10 conceptos más mencionados en Atacama
+
 ```
 
 ```{r}
@@ -189,7 +201,7 @@ Cabe resaltar, que se esperan tres gráficos de barras para las tres diferentes 
 Para esta sección utilizaremos un dataset real de número de accidentes de tránsito por localidad, el cual puede ser encontrado en el siguiente link: http://datos.gob.cl/dataset/9348. Para cargar el dataset ejecute el siguiente código:
 
 ```{r}
-tipos <- read.table("https://users.dcc.uchile.cl/~hsarmien/mineria/datasets/accidentes_2010_2011.txt")
+tipos <- read.table("https://users.dcc.uchile.cl/~hsarmien/mineria/datasets/accidentes_2010_2011.txt", fileEncoding="UTF-8")
 head(tipos)
 ```
 
@@ -200,10 +212,32 @@ Explore el set de datos para responder las siguientes preguntas:
 Este tipo de gráfico nos ayudará a entender como se distribuye los datos por cada tipo de accidentes. Es decir, podremos apreciar que tan dispersos o similares son los datos en todo el dataset. También, puede ser útil para observar valores atípicos u outliers en los datos.
 
 ```{r}
-# RESPUESTA
+# RESPUESTA 
+library(tidyverse)
+# OJO CON CANTIDAD DE IMPORTACIONES DE TIDYVERSE
+ac_2011<-tipos %>%
+  filter(Anio==2011 & Muestra=="Regional")%>%
+  group_by(TipoAccidente) #%>%
+  #summarise(Total = sum(Cantidad))
+plot(ac_2011$TipoAccidente,ac_2011$Cantidad, xlab = "Tipo de Accidente", ylab="Total de accidentes", main="Cantidad de accidentes por tipo para el año 2011")
+plot(ac_2011$TipoAccidente,ac_2011$Cantidad, xlab = "Tipo de Accidente", ylab="Total de accidentes", main="Cantidad de accidentes por tipo para el año 2011",ylim
+     =c(0,4000))
 ```
 
 2. ¿Qué aprecia con el gráfico anterior? ¿Qué otra forma de explorar los datos podría agregar? ¿Qué información adicional aporta? Adjunte una breve explicación.
+
+En primer lugar se aprecian outliers, por esta razón se modifican los límites del eje vertical para lograr una mejor comprensión de los boxplots. En el segundo gráfico se observa que los datos de accidentes a nivel regional agrupados por tipo no satisfacen una distribución normal, los brazos superior e inferior no logran ser simétricos para ningún tipo de accidente ni la mediana se encuentra en el centro de los boxplots. Lo observado se debe a que se están graficando los datos absolutos a nivel regional sin considerar la población por región, en consecuencia, regiones como la Metropolitana concentran la mayor cantidad de accidentes y puede aparecer como outliers. Una forma de corregir este problema es dividir la cantidad de accidentes por el total regional.
+
+```{r}
+new_ac_2011<-merge(ac_2011%>%group_by(Descripcion)%>%summarise(total_reg = sum(Cantidad)),ac_2011, by="Descripcion")
+cant_per_total<-c(new_ac_2011$Cantidad/new_ac_2011$total_reg)
+new_ac_2011<-cbind(new_ac_2011,cant_per_total)
+new_acc_2011_g<-new_ac_2011 %>% 
+  group_by(TipoAccidente)
+plot(new_acc_2011_g$TipoAccidente,new_acc_2011_g$cant_per_total, xlab = "Tipo de Accidente", ylab="Total de accidentes", main="Accidentes por tipo  normalizados por total regional (2011)")
+
+```
+Como se logra ver en el gráfico, la normalización por total de accidentes a nivel regional logra reducir los outliers, aún así, los datos se distribuyen de manera poco simétrica al no coincidir la mediana en el centro de los boxplots. 
 
 **Respuesta:**
 
