@@ -31,49 +31,54 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 ## Teoría
 
 *1. ¿Cuál es el objetivo de Minería de datos y qué la diferencia de Machine Learning? De un ejemplo.*
-
+ 
 **Respuesta:**
-
+El objetivo de la minería de datos es generar conocimiento útil a partir de grandes sets de datos que no necesariamente fueron estructurados para los fines de estudio. Se diferencia de Maching Learning en que esta última disciplina se enfoca en predecir a través de algoritmos automodificables. Un ejemplo en el contexto de los videosjuegos es el uso de machine learning para contrincantes artificiales (los bots) que deben ser capaces de predecir los movimientos del jugador para no ser un blanco fácil, a la vez que permiten ganar al jugador para motivarlo a seguir. Data Mining se puede utilizar recopilando toda la información de los chats para lograr concluir que los jugadores desean un mouse con determinada cantidad de botones.  
 
 *2. Describa y compare los siguientes métodos usados en Minería de datos: clasificación vs. clustering.*
 
 **Respuesta:**
 
+Clasificación busca predecir la categoría de un nuevo dato utilizando algoritmos supervisados, en donde se utiliza un conjunto Ground Truth para entrenar y un un Conjunto de verificación para evaluar el desempeño del clasificador. En cambio, Clustering tiene la finalidad de encontrar grupos con características comunes (como por ejemplo distancia euclideana) dentro de un dataset, de esta forma se puede segmentar un conjunto de datos.  
 
 *3. ¿Qué desafios existen en Minería de datos?*
 
 **Respuesta:**
 
+El primer deafío consiste en la escalabilidad, consistente en desarrollar modelos capaces de funcionar con datasets de tamaños pequeños y grandes. El segundo sefío corresponden a la dimensionalidad, ya que se debe buscar una dimensión óptima que permita crear un modelo fuerte a sin llegar a ser demasiado complejo de computar. El tercer desafío es la obtención de datos, ya que estos suelen ser complejos y heterogéneos, ya que por lo general son recolectados con finalidades diferentes a las del modelo, debiendo utilizar de preprocesamiento. El cuarto desafío tiene que ver con la poca calidad de los datasets los cuales deben ser procesados para eliminar ruido, outliers y datos incompletos. El quinta desafío corresponde a la distribución de datos y propiedad, un caso contigente es la distribución de datos de la evolución de la pandemia en Chile donde el Minsal sólo ha circulado informes en formato PDF obstaculizando el proceso de obtención de datos para su posterior análisis por parte de la comunidad civil. En sexto lugar se tiene como desafío proteger la privacidad de los datos, ya que estos pueden contener información sensible (informes médicos, antecedentes penales, etc.), en consecuencia, se pueden anonimizar los datos sensibles para su análisis público. El último, corresponde al streaming, donde se debe abordar un flujo de información de gran dimensionalidad con una nula estructura, como la emisión de videos.   
 
 *4. Respecto a los tipos de atributo, ¿cuál es la diferencia entre razón e intervalo?*
 
 **Respuesta:**
+
+La diferencia entre razón e intervalo consiste en la existencia de una referencia fija que poseen los intervalos, como por ejemplo las dimensiones espaciales como largo, ancho, etc. Un intervalo carece de esta referencia absoluta, un ejemplo de interválo es la temperatura en Celsius, mientra que la temperatura en Kelvin corresponde a una razón por tener la referencia del 0 absoluto.
 
 
 *5. ¿Qué factores que ocasionan errores en el análisis de datos deben ser considerados para la limpieza de un set de datos?*
 
 **Respuesta:**
 
+Un factor a considerar es el sesgo del dataset, por ejemplo si se concluye una preferencia de mercado a través de un dataset de twitter, esta conclusión no necesariamente aplicará a grupos que no utilizan redes sociales como los adultos mayores. Otro factor a considerar es la calibración de los intrumentos de obtención de datos, en donde las conclusiones pueden ser erróneas debido a la fuente. Otro factor a considerar es la distribución de los datos de entrada, ya que se deben distribuir de acuerdo a los propositos de los diferentes trabajos evitando categorías sobrerrepresentadas o subrepresentadas. Otro factor es la dimesnión del dataset que debe ser lo suficientemente grande para generar el modelo y lo suficientemente pequeño para ser abordable desde un computador. 
 
 *6. ¿Qué es el análisis exploratorio de datos o EDA?*
 
 **Respuesta:**
-
+Corresponde al análisis estadístico básico que se le puede hacer a un data set con la finalidad de reconocer anomalías que motiven estudios, incluyendo obtención de medianas, medias, percentiles, máximos, mínimos y correlaciones. También permite conocer la calidad del dataset motivando acciones de preprocesamiento. 
 
 *7. Describa las medidas de tendencia central: media y mediana. Exponga la diferencia entre ambas.*
 
 **Respuesta:**
-
+La media corresponde al promedio de los datos numéricos mientras que la mediana es el dato que divide un conjunto de datos en dos percentiles (percentil 50). La media de un conjunto es altamente sensible a datos extremos o fuera de rango, mientras que la mediana de un conjunto es más robusta frente a outliers. Cuando los datos se distribuyen de manera uniforme la media y la mediana se encuentran muy próximas, mientras que para otros conjuntos de datos la mediana puede diferir agudamente de la media. La relación entre media y mediana entrega información sobre los outliers del conjunto de datos. 
 
 *8. ¿Qué es una matriz de correlación y para qué sirve?*
 
 **Respuesta:**
-
+La matriz de correción es la matriz contruida con los coeficientes de correlación que tienen dos variables (columna y fila de la matriz), la diagonal de esta matriz corresponde a una diagonal de unos. Sirve para analizar las dependencias que existen entre las dos variables columna y fila, si la correlación es cercana a 1 existe una razón de proporcionalidad directa, si es nula, no existe una relación numérica entre las variables, si la correlación es cercana a -1, entonces las variables son inversamente proporcionales. El detectar este tipo de relaciones puede generar motivación en el estudio de un dataset teniendo siempre en cuenta que correlación no implica causalidad, es decir, que no porque los datos se ajusten a un modelo, entonces están estrechamente relacionados.
 
 *9. Explique cómo se construye un Boxplot y exponga cómo se identifican los valores atípicos u outliers en este tipo de gráfico.*
 
 **Respuesta:**
-
+El boxplot se construye con los tres percentiles más importantes de un dataset, en primer lugar el percentil 50 marca el centro de la caja, luego los percentiles 25 y 75 se ubican en el limite inferior y superior de la caja, luego los brazos corresponden a una al percentil superior más una proporcion de la razón inter cuartil, mientras que el límite del brazo inferior corresponde al primer cuartil menos la misma proprcion de la razón intercuartil. Esta forma de ilustrar los datos permite obtener un resumen de cómo se encuentran distribuidos, teniendo en mente que una distribución normal la mediana se encuentra en el centro del boxplot así como la caja, siendo un dibujo simétrico con respecto a la mediana.
 
 ## Práctica 
 
@@ -94,7 +99,7 @@ data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt",
 1. ¿Cuáles son las dimensiones del dataset (filas, columnas)? Adjunte código o indique cómo determinó la cantidad de datos total. 
 
 ```{r}
-# RESPUESTA
+# RESPUESTAselec
 dim(data_tf)
 ```
 R: Las dimensiones del dataset son 328 filas y 114 columnas.
@@ -167,7 +172,7 @@ dataf[order(dataf$total, decreasing = TRUE),1][1:10]
 library(dplyr)
 regiones <- strsplit(as.character(data_tf[,1]), '/')
 data_tf$region <- sapply(regiones, "[[", 1)
-data_tf <- data_tf %>% select(localidad, region, everything())
+data_tf <- data_tf %>% dplyr::select(localidad, region, everything())
 ```
 
 Luego, genere un gráfico de barras (ggplot) que muestre los 10 conceptos más mencionados en cada una de las regiones mencionadas (adjunte gráficos y código):
@@ -258,7 +263,7 @@ En primer lugar se aprecian outliers, por esta razón se modifican los límites 
 new_ac_2011<-merge(ac_2011%>%group_by(Descripcion)%>%summarise(total_reg = sum(Cantidad)),ac_2011, by="Descripcion")
 cant_per_total<-c(new_ac_2011$Cantidad/new_ac_2011$total_reg)
 new_ac_2011<-cbind(new_ac_2011,cant_per_total)
-new_acc_2011_g<-new_ac_2011 %>% 
+new_acc_2011_g<-new_ac_2011 %>%
   group_by(TipoAccidente)
 plot(new_acc_2011_g$TipoAccidente,new_acc_2011_g$cant_per_total, xlab = "Tipo de Accidente", ylab="Total de accidentes", main="Accidentes por tipo  normalizados por total regional (2011)")
 
@@ -267,14 +272,14 @@ Como se logra ver en el gráfico, la normalización por total de accidentes a ni
 
 **Respuesta:**
 
+
 ### Diamantes
 
 Considere el set de datos diamonds del paquete ggplot2 de R, que contiene los precios en dolares, junto con otros atributos importantes: quilates, corte, color y claridad. También hay medidas físicas como ser: x (largo), y (ancho), z (profundidad), depth (porcentaje total de profundidad) y table (ancho desde el tope del diamante al punto relativo más ancho del diamante):
 
 ```{r}
-library(ggplot2)
 data("diamonds")
-head(diamonds)
+#diamonds[1:10,]
 ```
 
 Realice una exploración por el set de datos para responder las siguientes preguntas:
@@ -285,7 +290,7 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 # RESPUESTA
 # Para ver datos inexistentes, se usa lo siguente
 sapply(diamonds, function(x) sum(is.na(x)))
-```
+ ```
 
 ```{r}
 #para graficar se usa el código a continuación
@@ -293,18 +298,19 @@ datad <- data.frame(cut = diamonds$cut, depth = diamonds$depth)
 ggplot(datad,aes(x= cut, y=depth))+geom_boxplot()
 ```
 No hay valores inexistentes como se muestra en la figura anterior, pero hay varios outliers, que se calculan a continuación, obteniendo la cantidad de datos que están fuera del intervalo [1er cuartil, 3er cuartil] de los datos.
+
 ```{r}
 outliers <- function(x,inf,sup){
   addition <- 0
   for (var in x){
     if (var < inf || var > sup){
       addition <- addition + 1
-    } 
+    }
   }
   return(addition)
 }
 ```
-Se calculan el porcentaje de outliers que tiene una característica de la siguiente forma:
+Se calculan el porcentaje de outliers que tiene una característica de la siguiente forma: -->
 ```{r}
 summary(diamonds[diamonds$cut=='Fair',])
 fair_frame <- diamonds[diamonds$cut == "Fair",]
@@ -333,8 +339,9 @@ cor(fair_frame$z, fair_frame$price)
 El tamaño del diamante (x,y,z) está fuertemente relacionado con el precio de este.
 
 La correlación más alta para table está dada por:
+
 ```{r}
-data_good <- diamonds[diamonds$cut == 'Good',] 
+data_good <- diamonds[diamonds$cut == 'Good',]
 data_very_good <- diamonds[diamonds$cut == 'Very Good',]
 data_premium <- diamonds[diamonds$cut == 'Premium', ]
 data_ideal<- diamonds[diamonds$cut=='Ideal',]
@@ -347,9 +354,11 @@ c5 <- cor(data_ideal$table, data_ideal$price)
 datos <- c(c1,c2,c3,c4,c5)
 print(abs(datos))
 ```
+
 El cut good está más correlacionado con el precio en la variable table.
-
+ 
 3. Proponga otra forma para explorar los datos. ¿Qué información adicional aporta? Adjunte una breve explicación.
-
+ 
 **Respuesta:**
+
 Una forma puede ser cómo se relacionan las variables del tamaño del diamante con su depth y table, graficando y ver alguna relación visual si es que existe. Otra forma es el diagrama de rostros que permite graficar datos multidimensionales en una sola imagen.
