@@ -1,1 +1,0 @@
-"0","plot(exp(1:10), main=""Mi primer gráfico"", xlab=""eje x"", ylab=""eje y"", type = ""l"")"

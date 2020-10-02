@@ -1,6 +1,0 @@
-"0","# en dplyr podemos generar un vector de nombres usando la notacion:"
-"0","# en este caso, `Graves:Muertos` creará un vector que considerará el orden del data frame original:"
-"0","# -> c(Graves, Leves, MenosGraves, Muertos)"
-"0","sp %>%"
-"0","  gather(Graves:Muertos, key = ""Estado"", value = ""Cantidad"") %>%"
-"0","  head()"

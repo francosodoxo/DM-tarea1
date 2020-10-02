@@ -1,6 +1,0 @@
-"0","# Suma cuantos datos hay en la columna Anio con valor 2010"
-"0","sum(afectados$Anio == 2010) "
-"1","[1]"
-"1"," 1432"
-"1","
-"

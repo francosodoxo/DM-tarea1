@@ -1,3 +1,0 @@
-"0","a = data.frame(ClienteID = c(1:6), Producto = c(rep(""Tostadora"", 3), rep(""Radio"", 3)))"
-"0","b = data.frame(ClienteID = c(2, 4, 6), Comuna = c(rep(""Santiago"", 2), rep(""Puerto Montt"", 1)))"
-"0","a"

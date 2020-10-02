@@ -1,7 +1,0 @@
-"0","afect_2010 <- with(afectados,afectados[Muestra == ""Regional"" & Anio == 2010, ])"
-"0","plot(afect_2010$Estado, afect_2010$Cantidad)"
-"2","NAs introducidos por coerción"
-"2","ningún argumento finito para min; retornando Inf"
-"2","ningun argumento finito para max; retornando -Inf"
-"2","Error in plot.window(...) : se necesitan valores finitos de 'xlim'
-"

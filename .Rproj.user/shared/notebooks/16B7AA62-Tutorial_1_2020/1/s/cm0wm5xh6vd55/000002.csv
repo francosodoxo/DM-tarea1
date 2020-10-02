@@ -1,5 +1,0 @@
-"0","# Se asume que los archivos se encuentran en el w.d., si no los tienes descargados, lo siguiente fallará:"
-"0","tipos <- read.table(""accidentes_2010_2011.txt"")"
-"2","no fue posible abrir el archivo 'accidentes_2010_2011.txt': No such file or directory"
-"2","Error in file(file, ""rt"") : no se puede abrir la conexión
-"

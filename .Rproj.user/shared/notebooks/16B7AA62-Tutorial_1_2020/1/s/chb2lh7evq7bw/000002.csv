@@ -1,2 +1,0 @@
-"0","# Filtramos que la columna Anio sea 2010 y además que la columna Muestra sea Comunal. Se muestran todas las columnas. "
-"0","head(afectados[afectados$Anio == 2010 & afectados$Muestra == ""Comunal"", ]) "

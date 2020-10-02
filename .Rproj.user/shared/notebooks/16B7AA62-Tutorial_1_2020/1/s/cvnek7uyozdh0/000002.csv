@@ -1,2 +1,0 @@
-"0","# Right outer join"
-"0","merge(a, b, by = ""ClienteID"", all.y = T)"

@@ -1,5 +1,0 @@
-"0","# Para hacer el ejemplo pequeño, vamos a tomar los 10 primeros datos de afectados"
-"0","afectados_reducido <- afectados[1:10,]"
-"0",""
-"0","# Ordenar ascendentemente la columna Cantidad"
-"0","afectados_reducido[order(afectados_reducido$Cantidad), ] "

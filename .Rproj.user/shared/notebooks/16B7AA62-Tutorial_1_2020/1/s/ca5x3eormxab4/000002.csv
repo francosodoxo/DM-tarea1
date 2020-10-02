@@ -1,2 +1,0 @@
-"0","tipos <- read.table(""https://users.dcc.uchile.cl/~hsarmien/mineria/datasets/accidentes_2010_2011.txt"")"
-"0","afectados <- read.table(""https://users.dcc.uchile.cl/~hsarmien/mineria/datasets/afectados_2010_2011.txt"")"

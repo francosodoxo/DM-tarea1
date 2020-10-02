@@ -1,4 +1,0 @@
-"0","library(dplyr)"
-"0","regiones <- strsplit(as.character(data_tf[,1]), '/')"
-"0","data_tf$region <- sapply(regiones, ""[["", 1)"
-"0","data_tf <- data_tf %>% select(localidad, region, everything())"

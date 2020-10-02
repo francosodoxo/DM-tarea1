@@ -1,2 +1,0 @@
-"0","# Ordenar descendente la columna Cantidad"
-"0","afectados_reducido[order(afectados_reducido$Cantidad, decreasing = TRUE), ]"

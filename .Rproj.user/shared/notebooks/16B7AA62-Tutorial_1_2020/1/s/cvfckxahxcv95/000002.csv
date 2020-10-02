@@ -1,2 +1,0 @@
-"0","# Aplica la función suma (sum) a la columna Cantidad en base a los datos de Estado"
-"0","aggregate(Cantidad ~ Estado, afectados, FUN=sum) "

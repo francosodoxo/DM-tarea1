@@ -1,3 +1,0 @@
-"0","# en R los índices parten desde 1"
-"0","# note que el output en este caso es un data frame"
-"0","head(afectados[5])"

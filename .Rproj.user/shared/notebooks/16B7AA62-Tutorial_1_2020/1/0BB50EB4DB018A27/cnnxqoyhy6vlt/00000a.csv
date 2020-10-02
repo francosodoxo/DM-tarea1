@@ -1,2 +1,0 @@
-"0","afect_2010 <- with(afectados,afectados[Muestra == ""Regional"" & Anio == 2010, ])"
-"0","#plot(afect_2010$Estado, afect_2010$Cantidad)"

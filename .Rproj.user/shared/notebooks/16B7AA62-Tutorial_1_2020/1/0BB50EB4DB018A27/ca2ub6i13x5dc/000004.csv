@@ -1,7 +1,0 @@
-"0","library(ggplot2)  # cargamos la librería"
-"0",""
-"0","ggplot(afect2010) +   # asociamos un data frame a ggplot"
-"0","  geom_bar(aes(x = Descripcion, y = Cantidad), stat=""identity"") +   # creamos un grafico de barras como una capa"
-"0","  coord_flip() +  # transformamos el grafico invirtiendo los ejes de coordenadas (sólo visualmente)"
-"0","  ggtitle(""Muertos por accidentes durante el 2010"") + # título"
-"0","  xlab(""Región (descripción)"") + ylab(""Frecuencia (cantidad)"")  # etiquetas"
