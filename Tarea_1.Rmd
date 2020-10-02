@@ -208,10 +208,13 @@ Explore el set de datos para responder las siguientes preguntas:
 
 Este tipo de gráfico nos ayudará a entender como se distribuye los datos por cada tipo de accidentes. Es decir, podremos apreciar que tan dispersos o similares son los datos en todo el dataset. También, puede ser útil para observar valores atípicos u outliers en los datos.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # RESPUESTA 
 library(tidyverse)
 # OJO CON CANTIDAD DE IMPORTACIONES DE TIDYVERSE
+```
+
+```{r}
 ac_2011<-tipos %>%
   filter(Anio==2011 & Muestra=="Regional")%>%
   group_by(TipoAccidente) #%>%
