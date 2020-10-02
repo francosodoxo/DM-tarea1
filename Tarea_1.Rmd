@@ -102,15 +102,15 @@ R: Las dimensiones del dataset son 328 filas y 114 columnas.
 
 ```{r}
 # RESPUESTA
-str(data_tf[85,])
+str(data_tf[85,1:10])
 ```
-R: Cada línea del dataset está compuesto por 113 columnas donde la primera corresponde a la localidad (tipo factor) y las siguientes 112 corresponden al número de veces que se mencionó el concepto de la etiqueta de la columna respectiva. Tomando como ejemplo la fila 85, se nos muestra aque en la localidad de Aysen la "igualdad ante la ley" se mencionó 3 veces.
+R: Cada línea del dataset está compuesto por 113 columnas donde la primera corresponde a la localidad (tipo factor) y las siguientes 112 corresponden al número de veces que se mencionó el concepto de la etiqueta de la columna respectiva. Tomando como ejemplo la fila 85, se nos muestra aque en la localidad de Aysen "a_la_participacion" se mencionó 1 vez.
 
 3. ¿Existen localidades repetidas en el dataset? Adjunte el código o indique cómo llegó a esa conclusión. 
 
 ```{r}
 # RESPUESTA
-unique(data_tf$localidad)
+length(unique(data_tf$localidad))
 ```
 La función unique entrega 328 valores diferentes que coinciden con la cantidad de filas del dataset concluyendo que no existen datos duplicados. Sin enbargo la función unique opera bajo el supuesto de que los datos se encuentran bien ingresados, errores en tildes o codificación que pudiesen significar duplicación no están siendo analizados.
 
@@ -125,18 +125,17 @@ names(data_tf)[1:20]
 
 ### Análisis
 
-1. Liste todas las localidades donde *no* se discu]1:15tió el concepto `a_la_salud`. 
+1. Liste todas las localidades donde *no* se discutió el concepto `a_la_salud`. 
 
 ```{r}
 # RESPUESTA
-data_tf[data_tf$a_la_salud!=0,]
 ```
 
 2. Liste las 10 localidades que más mencionaron el concepto `justicia`. 
 
 ```{r}
 # RESPUESTA
-data_tf[order(-data_tf$justicia),][1:10,c(1,71)]
+
 ```
 
 
@@ -145,8 +144,6 @@ data_tf[order(-data_tf$justicia),][1:10,c(1,71)]
 
 ```{r}
 # RESPUESTA
-res[]<-colSums(data_tf[,-1])
-res[order(-res)][1:10]
 ```
 
 
@@ -247,8 +244,8 @@ Considere el set de datos diamonds del paquete ggplot2 de R, que contiene los pr
 
 ```{r}
 library(ggplot2)
-data("diamonds")
-head(diamonds)
+#data("diamonds")
+#head(diamonds)
 ```
 
 Realice una exploración por el set de datos para responder las siguientes preguntas:
