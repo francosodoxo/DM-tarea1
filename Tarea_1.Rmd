@@ -12,7 +12,7 @@ output:
 ---
 
 # Declaración de compromiso ético
-Nosotros **AGREGUEN SUS NOMBRES**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
+Nosotros **Franco Seguel y Álvaro Becerra**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
 
 # Instrucciones
 
@@ -38,26 +38,22 @@ El objetivo de la minería de datos es generar conocimiento útil a partir de gr
 *2. Describa y compare los siguientes métodos usados en Minería de datos: clasificación vs. clustering.*
 
 **Respuesta:**
-
 Clasificación busca predecir la categoría de un nuevo dato utilizando algoritmos supervisados, en donde se utiliza un conjunto Ground Truth para entrenar y un un Conjunto de verificación para evaluar el desempeño del clasificador. En cambio, Clustering tiene la finalidad de encontrar grupos con características comunes (como por ejemplo distancia euclideana) dentro de un dataset, de esta forma se puede segmentar un conjunto de datos.  
 
 *3. ¿Qué desafios existen en Minería de datos?*
 
 **Respuesta:**
-
 El primer deafío consiste en la escalabilidad, consistente en desarrollar modelos capaces de funcionar con datasets de tamaños pequeños y grandes. El segundo sefío corresponden a la dimensionalidad, ya que se debe buscar una dimensión óptima que permita crear un modelo fuerte a sin llegar a ser demasiado complejo de computar. El tercer desafío es la obtención de datos, ya que estos suelen ser complejos y heterogéneos, ya que por lo general son recolectados con finalidades diferentes a las del modelo, debiendo utilizar de preprocesamiento. El cuarto desafío tiene que ver con la poca calidad de los datasets los cuales deben ser procesados para eliminar ruido, outliers y datos incompletos. El quinta desafío corresponde a la distribución de datos y propiedad, un caso contigente es la distribución de datos de la evolución de la pandemia en Chile donde el Minsal sólo ha circulado informes en formato PDF obstaculizando el proceso de obtención de datos para su posterior análisis por parte de la comunidad civil. En sexto lugar se tiene como desafío proteger la privacidad de los datos, ya que estos pueden contener información sensible (informes médicos, antecedentes penales, etc.), en consecuencia, se pueden anonimizar los datos sensibles para su análisis público. El último, corresponde al streaming, donde se debe abordar un flujo de información de gran dimensionalidad con una nula estructura, como la emisión de videos.   
 
 *4. Respecto a los tipos de atributo, ¿cuál es la diferencia entre razón e intervalo?*
 
 **Respuesta:**
-
 La diferencia entre razón e intervalo consiste en la existencia de una referencia fija que poseen los intervalos, como por ejemplo las dimensiones espaciales como largo, ancho, etc. Un intervalo carece de esta referencia absoluta, un ejemplo de interválo es la temperatura en Celsius, mientra que la temperatura en Kelvin corresponde a una razón por tener la referencia del 0 absoluto.
 
 
 *5. ¿Qué factores que ocasionan errores en el análisis de datos deben ser considerados para la limpieza de un set de datos?*
 
 **Respuesta:**
-
 Un factor a considerar es el sesgo del dataset, por ejemplo si se concluye una preferencia de mercado a través de un dataset de twitter, esta conclusión no necesariamente aplicará a grupos que no utilizan redes sociales como los adultos mayores. Otro factor a considerar es la calibración de los intrumentos de obtención de datos, en donde las conclusiones pueden ser erróneas debido a la fuente. Otro factor a considerar es la distribución de los datos de entrada, ya que se deben distribuir de acuerdo a los propositos de los diferentes trabajos evitando categorías sobrerrepresentadas o subrepresentadas. Otro factor es la dimesnión del dataset que debe ser lo suficientemente grande para generar el modelo y lo suficientemente pequeño para ser abordable desde un computador. 
 
 *6. ¿Qué es el análisis exploratorio de datos o EDA?*
@@ -107,7 +103,8 @@ R: Las dimensiones del dataset son 328 filas y 114 columnas.
 
 ```{r}
 # RESPUESTA
-str(data_tf[85,])
+# No se incluyen todas las columnas para hacer el html legible
+str(data_tf[85,1:10])
 ```
 R: Cada línea del dataset está compuesto por 113 columnas donde la primera corresponde a la localidad (tipo factor) y las siguientes 112 corresponden al número de veces que se mencionó el concepto de la etiqueta de la columna respectiva. Tomando como ejemplo la fila 85, se nos muestra aque en la localidad de Aysen la "igualdad ante la ley" se mencionó 3 veces.
 
@@ -115,7 +112,7 @@ R: Cada línea del dataset está compuesto por 113 columnas donde la primera cor
 
 ```{r}
 # RESPUESTA
-unique(data_tf$localidad)
+length(unique(data_tf$localidad))
 ```
 La función unique entrega 328 valores diferentes que coinciden con la cantidad de filas del dataset concluyendo que no existen datos duplicados. Sin enbargo la función unique opera bajo el supuesto de que los datos se encuentran bien ingresados, errores en tildes o codificación que pudiesen significar duplicación no están siendo analizados.
 
@@ -242,7 +239,7 @@ Explore el set de datos para responder las siguientes preguntas:
 
 Este tipo de gráfico nos ayudará a entender como se distribuye los datos por cada tipo de accidentes. Es decir, podremos apreciar que tan dispersos o similares son los datos en todo el dataset. También, puede ser útil para observar valores atípicos u outliers en los datos.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # RESPUESTA 
 library(tidyverse)
 # OJO CON CANTIDAD DE IMPORTACIONES DE TIDYVERSE
@@ -268,10 +265,10 @@ new_acc_2011_g<-new_ac_2011 %>%
 plot(new_acc_2011_g$TipoAccidente,new_acc_2011_g$cant_per_total, xlab = "Tipo de Accidente", ylab="Total de accidentes", main="Accidentes por tipo  normalizados por total regional (2011)")
 
 ```
-Como se logra ver en el gráfico, la normalización por total de accidentes a nivel regional logra reducir los outliers, aún así, los datos se distribuyen de manera poco simétrica al no coincidir la mediana en el centro de los boxplots. 
+
 
 **Respuesta:**
-
+Como se logra ver en el gráfico, la normalización por total de accidentes a nivel regional logra reducir los outliers, aún así, los datos se distribuyen de manera poco simétrica al no coincidir la mediana en el centro de los boxplots. 
 
 ### Diamantes
 
@@ -279,7 +276,8 @@ Considere el set de datos diamonds del paquete ggplot2 de R, que contiene los pr
 
 ```{r}
 data("diamonds")
-#diamonds[1:10,]
+# la siguiente linea genera un error en el knit
+# diamonds[1:10,]
 ```
 
 Realice una exploración por el set de datos para responder las siguientes preguntas:
