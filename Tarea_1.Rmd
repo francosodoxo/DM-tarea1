@@ -99,6 +99,7 @@ data_tf <- read.csv("http://dcc.uchile.cl/~hsarmien/mineria/datasets/actas.txt",
 dim(data_tf)
 ```
 R: Las dimensiones del dataset son 328 filas y 114 columnas.
+
 2. ¿Qué describe cada línea del dataset? (ejemplifique tomando la fila 85)
 
 ```{r}
@@ -114,7 +115,7 @@ R: Cada línea del dataset está compuesto por 113 columnas donde la primera cor
 # RESPUESTA
 length(unique(data_tf$localidad))
 ```
-La función unique entrega 328 valores diferentes que coinciden con la cantidad de filas del dataset concluyendo que no existen datos duplicados. Sin enbargo la función unique opera bajo el supuesto de que los datos se encuentran bien ingresados, errores en tildes o codificación que pudiesen significar duplicación no están siendo analizados.
+La función unique entrega 328 valores diferentes que coinciden con la cantidad de filas del dataset concluyendo que no existen datos duplicados. Sin embargo la función unique opera bajo el supuesto de que los datos se encuentran bien ingresados, errores en tildes o codificación que pudiesen significar duplicación no están siendo analizados.
 
 4. Liste los nombres de las columnas del dataset `data_tf`. Adjunte código en R y *recuerde* usar `head` si el resultado es muy largo.
 
@@ -217,10 +218,7 @@ pplot('Metropolitana de Santiago')
 
 6. De la pregunta anterior, ¿considera que es razonable usar el conteo de frecuencias para determinar las regiones que tuvieron mayor participación en el proceso? ¿Por qué? Sugiera y solamente comente una forma distinta de hacerlo.
 
-```{r}
-# RESPUESTA
-print("No es una buena sugerencia, porque no se sabe qué tan profundas fueron las discusiones que se dieron en cada localidad, entonces una medida a considerar sería haber agregado el tiempo que se demoraron en discutir cada punto y medir en cuál localidad se dieron discusiones más largas.")
-```
+No es una buena sugerencia, porque no se sabe qué tan profundas fueron las discusiones que se dieron en cada localidad, entonces una medida a considerar sería haber agregado el tiempo que se demoraron en discutir cada punto y medir en cuál localidad se dieron discusiones más largas
 
 ## Ejercicios
 
